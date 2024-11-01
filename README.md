@@ -12,41 +12,32 @@ A post-mortem debugging tool that combines the power of `debugpy` and `debuglate
 ## Installation
 
 ```bash
-pip install pysnapshot
+pip install git+https://github.com/ChenNingCong/pysnapshot
 ```
 
 ## Quick Start
 
-1. Import and initialize the debugger in your code:
+1. Import the library and install the hook as early as possible
 
 ```python
-from post_mortem_debugger import PMDebugger
-
-debugger = PMDebugger()
-debugger.enable()
+import pysnapshot
+pysnapshot.install_exception_snapshot_hook("exception")
 ```
 
-2. When your program crashes, the debugger will automatically preserve the state and provide connection instructions.
+2. When your program crashes, the debugger will save the stack trace to the file `exception.dump`.
 
-3. Connect to the debug session using your IDE or the command line interface:
-
-```bash
-python -m post_mortem_debugger connect
+3. You can also use the snapshot hook to save the stack trace explicitly. This won't stop the program.
+```python
+pysnapshot.snapshot("checkpoint")
 ```
+
+4.  Launch the debugger server with `python -m pysnapshot --filename exception.dump --endpoint 5678`.
+
+5. In vscode, launch the debugger with the "attach" configuration.
 
 ## Requirements
 
 - Python 3.7+
-- debugpy
-- debuglater
-
-## Configuration
-
-Set environment variables to customize behavior:
-
-- `PMD_PORT`: Debug server port (default: 5678)
-- `PMD_HOST`: Debug server host (default: localhost)
-- `PMD_WAIT`: Wait for debugger connection on crash (default: True)
 
 ## Contributing
 
