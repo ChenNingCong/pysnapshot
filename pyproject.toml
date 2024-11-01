@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pysnapshot"
+version = "0.0.1"
+authors = [
+  { name="Ningcong Chen", email="nchen3@wpi.edu" },
+]
+description = "A package for post-mortem debugging"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "debugpy",
+  "debuglater[all]@git+https://github.com/ChenNingCong/debuglater",
+  "pydevd"
+]
+
+# [project.urls]
+# Homepage = "https://github.com/pypa/sampleproject"
+# Issues = "https://github.com/pypa/sampleproject/issues"
