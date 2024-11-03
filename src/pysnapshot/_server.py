@@ -37,6 +37,6 @@ def tb_callback(_tb):
     tb = _tb
 
 def launch_debug_server(filename, endpoint):
-    dump = debuglater.debug_dump("checkpoint.dump", tb_callback)
+    dump = debuglater.debug_dump(filename, tb_callback)
     debugpy_excepthook(endpoint, dump["type"], dump["value"], dump["traceback"])
 
